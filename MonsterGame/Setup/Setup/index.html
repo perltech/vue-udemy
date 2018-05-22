@@ -46,10 +46,10 @@
                 <ul>
                     <li v-for="(value, key) in attackObject">
                         <template v-if="key === 'player'">
-                            <div v-for="hitPoints in value"> {{key}} attack is {{hitPoints}}</div>
+                            <div v-for="hitPoints in value" class="player-turn"> {{ key }} attack is {{ hitPoints }}</div>
                         </template>
                         <template v-else>
-                                <div v-for="hitPoints in value">itd! {{key}} attack is {{hitPoints}}</div>
+                                <div v-for="hitPoints in value" class="monster-turn">{{ key }} attack is {{ hitPoints }}</div>
 
                         </template>
 

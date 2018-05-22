@@ -34,8 +34,18 @@ new Vue({
             this.monsterHealth = 100;
             this.attackObject.player = [];
             this.attackObject.monster = [];
+
             // this.healthObject.player.push(this.playerHealth);
             // this.healthObject.monster.push(this.monsterHealth);
+        },
+        checkWinner() {
+            console.log('this ran');
+            if (this.playerHealth <= 0) {
+                alert("You died!");
+            }
+            if (this.monsterHealth <= 0) {
+                alert("You are brave and victotious. Have a cookie.🍪");
+            }
         },
         yourAttack() {
             this.monsterHealth -= this.randPlayer();
@@ -43,6 +53,7 @@ new Vue({
             // this.healthObject.monster.push(this.monsterHealth);
             // this.healthBar();
             this.monsterAttack();
+            this.checkWinner();
 
         },
         monsterAttack() {
