@@ -29,6 +29,9 @@ new Vue({
             this.attackObject.monster.push(this.monsterAttackVal);
             return this.monsterAttackVal;
         },
+        randSpecial() {
+            return Math.floor(Math.random() * 25);
+        },
         startGame() {
             this.playerHealth = 100;
             this.monsterHealth = 100;
@@ -62,11 +65,26 @@ new Vue({
             // this.healthBar();
 
         },
+        specialAttack() {
+            let playerAttack = this.randSpecial();
+            let monsterAttack = this.randSpecial();
+
+            this.playerHealth -= playerAttack;
+            this.attackObject.player.push(playerAttack);
+
+            this.monsterHealth -= monsterAttack;
+            this.attackObject.monster.push(monsterAttack);
+            this.checkWinner();
+        },
         heal() {
-            this.playerHealth += this.randPlayer();
+            this.playerHealth += 5 + this.randPlayer();
             this.monsterAttack();
             // this.healthObject.player.push(this.playerHealth);
 
+        },
+        giveUp() {
+            alert("That lazy huh?");
+            this.startGame();
         },
         healthBar() {
             var width = 0;
