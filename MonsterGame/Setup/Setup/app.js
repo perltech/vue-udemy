@@ -1,42 +1,61 @@
 new Vue({
     el: "#app",
     data: {
-        yourHealth: 100,
+        playerHealth: 100,
         monsterHealth: 100,
         healthObject: {
             player: [],
             monster: []
-        }
+        },
+        attackObject: {
+            player: [],
+            monster: []
+        },
+        healthbar: {
+            width: '0px',
+            backgroundColor: 'red'
+        },
+        playerAttackVal: 0,
+        monsterAttackVal: 0
     },
     methods: {
+        randPlayer() {
+            this.playerAttackVal = Math.floor(Math.random() * 10);
+            this.attackObject.player.push(this.playerAttackVal);
+            return this.playerAttackVal;
+        },
+        randMonster() {
+            this.monsterAttackVal = Math.floor(Math.random() * 15);
+            this.attackObject.monster.push(this.monsterAttackVal);
+            return this.monsterAttackVal;
+        },
         startGame() {
-            this.yourHealth = 100;
+            this.playerHealth = 100;
             this.monsterHealth = 100;
-            // console.log(this.yourHealth, this.monsterHealth);
-            this.healthObject.player.push(this.yourHealth);
-            this.healthObject.monster.push(this.monsterHealth);
-            console.log(this.healthObject);
+            this.attackObject.player = [];
+            this.attackObject.monster = [];
+            // this.healthObject.player.push(this.playerHealth);
+            // this.healthObject.monster.push(this.monsterHealth);
         },
         yourAttack() {
-            this.monsterHealth -= Math.floor(Math.random() * 10);
-            // console.log("monster health: ", this.monsterHealth);
-            this.healthObject.monster.push(this.monsterHealth);
+            this.monsterHealth -= this.randPlayer();
+
+            // this.healthObject.monster.push(this.monsterHealth);
             // this.healthBar();
             this.monsterAttack();
 
         },
         monsterAttack() {
-            this.yourHealth -= Math.floor(Math.random() * 15);
-            this.healthObject.player.push(this.yourHealth);
-            this.healthBar();
-            // console.log("Your health: ", this.yourHealth);
+            this.playerHealth -= this.randMonster();
+            // this.healthObject.player.push(this.playerHealth);
+            // this.healthBar();
+
         },
         heal() {
-            this.yourHealth += Math.floor(Math.random() * 10);
+            this.playerHealth += this.randPlayer();
             this.monsterAttack();
-            this.healthObject.player.push(this.yourHealth);
-            // console.log("monster health: ", this.monsterHealth);
-            // console.log("Your health: ", this.yourHealth);
+            // this.healthObject.player.push(this.playerHealth);
+
         },
         healthBar() {
             var width = 0;

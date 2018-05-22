@@ -15,7 +15,7 @@
                 <h1 class="text-center">YOU</h1>
                 <div class="healthbar">
                     <div class="healthbar text-center" v-bind:style="healthBar" style="background-color: green; margin: 0; color: white;">
-
+                        {{ playerHealth }}
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                 <h1 class="text-center">MONSTER</h1>
                 <div class="healthbar">
                     <div class="healthbar text-center" v-bind:style="healthBar" style="background-color: green; margin: 0; color: white;">
-
+                        {{ monsterHealth }}
                     </div>
                 </div>
             </div>
@@ -44,8 +44,15 @@
         <section class="row log">
             <div class="small-12 columns">
                 <ul>
-                    <li v-for="(value, key) in healthObject">
-                        <div v-for="data in value">{{key}} health is {{data}}</div>
+                    <li v-for="(value, key) in attackObject">
+                        <template v-if="key === 'player'">
+                            <div v-for="hitPoints in value"> {{key}} attack is {{hitPoints}}</div>
+                        </template>
+                        <template v-else>
+                                <div v-for="hitPoints in value">itd! {{key}} attack is {{hitPoints}}</div>
+
+                        </template>
+
                     </li>
                 </ul>
             </div>
